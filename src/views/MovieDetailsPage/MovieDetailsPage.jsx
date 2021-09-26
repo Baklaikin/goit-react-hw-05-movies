@@ -1,11 +1,12 @@
 // import * as ApiService from "../../api/ApiService";
 import { useState, useEffect } from "react";
 import { useParams, Route, useRouteMatch, Switch } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Cast from "views/Cast/Cast";
 import Reviews from "views/Reviews/Reviews";
 
 export default function MovieDetailsPage() {
+  const history = useHistory();
   const { url } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -18,12 +19,18 @@ export default function MovieDetailsPage() {
       .then(setMovie);
   }, [movieId]);
 
+  const GoBackFn = () => {
+    return history.push("/");
+  };
+
   return (
     <>
       {movie && (
         <>
           <div>
-            <button type="button">Go back</button>
+            <button type="button" onClick={GoBackFn}>
+              Go back
+            </button>
             <div>
               <img
                 width="320"
@@ -47,11 +54,11 @@ export default function MovieDetailsPage() {
       )}
       <hr />
       <Switch>
-        <Route path={`${url}/Reviews`}>
-          <Reviews />
-        </Route>
         <Route path={`${url}/Cast`}>
-          <Cast />
+          <Cast data={movieId} />
+        </Route>
+        <Route path={`${url}/Reviews`}>
+          <Reviews data={movieId} />
         </Route>
       </Switch>
     </>

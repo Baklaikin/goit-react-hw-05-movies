@@ -16,9 +16,16 @@ export default function Homepage() {
         {popularToday &&
           popularToday.map((item) => {
             return (
-              <li key={item.id}>
-                <Link to={`/MoviePage/${item.id}`}>{item.title}</Link>
-              </li>
+              <Link to={`/MoviePage/${item.id}`} key={item.id}>
+                <li key={item.id}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                    alt={item.title}
+                    width="240"
+                  />
+                  <h3>{item.title}</h3>
+                </li>
+              </Link>
             );
           })}
       </ul>

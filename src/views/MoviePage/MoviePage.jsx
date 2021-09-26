@@ -1,9 +1,11 @@
 import * as ApiService from "../../api/ApiService";
 import { useEffect, useState } from "react";
-import { Link, Route, useRouteMatch } from "react-router-dom";
-import MovieDetailsPage from "views/MovieDetailsPage/MovieDetailsPage";
+import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
+// import MovieDetailsPage from "views/MovieDetailsPage/MovieDetailsPage";
 
 export default function MoviePage() {
+  const history = useHistory();
+  const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   const { url } = useRouteMatch();
@@ -19,6 +21,10 @@ export default function MoviePage() {
     e.preventDefault();
     const name = e.target.searchForm.value;
     setSearchWord(name);
+    history.push({
+      ...location,
+      search: `query=${name}`,
+    });
   };
 
   return (

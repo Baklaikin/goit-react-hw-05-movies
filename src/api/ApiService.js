@@ -8,10 +8,7 @@ export async function FetchMovies(url = "", config = {}) {
       if (response.ok) return response.json();
       Promise.reject(new Error("error"));
     })
-    .then((data) => {
-      console.log(data.results);
-      return data.results;
-    });
+    .then((data) => data.results);
   return response;
 }
 
@@ -30,9 +27,9 @@ export function SearchMovieDetails(movieId) {
 }
 
 export function MovieCasting(movieId) {
-  return FetchMovies(
-    `${BASE_URL}/movie/${movieId}/credits${PARAMS}${KEY}&page=1`
-  );
+  return fetch(`${BASE_URL}/movie/${movieId}/credits${PARAMS}${KEY}&page=1`)
+    .then((r) => r.json())
+    .then((data) => data.cast);
 }
 
 export function MovieReviews(movieId) {
