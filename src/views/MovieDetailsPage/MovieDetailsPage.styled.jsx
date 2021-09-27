@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 export const MainContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin: 0 auto;
   padding: 24px;
 `;
@@ -19,8 +19,7 @@ export const Poster = styled.img`
 `;
 
 export const ContentContainer = styled.div`
-  width: 800px;
-  margin-right: 20px;
+  width: 100%;
 `;
 
 export const Span = styled.span`
@@ -29,14 +28,15 @@ export const Span = styled.span`
 `;
 
 export const Paragraph = styled.p`
-  font-weight: 700;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-top: 0;
 `;
 
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
+  padding: 24px;
 `;
 
 export const StyledLink = styled(Link)`

@@ -43,7 +43,6 @@ export const MoviePicture = styled.img`
 `;
 
 export const Item = styled.li`
-  /* width: 100%; */
   height: auto;
   padding: 4px;
   box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);

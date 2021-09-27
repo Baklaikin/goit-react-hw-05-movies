@@ -2,6 +2,7 @@
 import { useState } from "react";
 import * as ApiService from "../../api/ApiService";
 import { useEffect } from "react/cjs/react.development";
+import { List, Item, Image, SmallTitle, Paragraph } from "../Cast/Cast.styled";
 
 export default function Cast({ data }) {
   const [castInfo, setCastInfo] = useState([]);
@@ -12,23 +13,22 @@ export default function Cast({ data }) {
 
   return (
     <>
-      <h2>Cast</h2>
-      <ul>
+      <List>
         {castInfo &&
           castInfo.map((person) => {
             return (
-              <li key={person.id}>
-                <img
+              <Item key={person.id}>
+                <Image
                   src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-                  width="180"
+                  // width="180"
                   alt={person.name}
                 />
-                <h3>{person.name}</h3>
-                <p>Character: {person.character}</p>
-              </li>
+                <SmallTitle>{person.name}</SmallTitle>
+                <Paragraph>Character: {person.character}</Paragraph>
+              </Item>
             );
           })}
-      </ul>
+      </List>
     </>
   );
 }

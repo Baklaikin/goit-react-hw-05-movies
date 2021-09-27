@@ -1,4 +1,3 @@
-// import * as ApiService from "../../api/ApiService";
 import { useState, useEffect } from "react";
 import { useParams, Route, useRouteMatch, Switch } from "react-router";
 import { useHistory } from "react-router-dom";
@@ -50,26 +49,25 @@ export default function MovieDetailsPage() {
             </ImgContainer>
             <ContentContainer>
               <h2>{movie.original_title}</h2>
-              <p>
+              <Paragraph>
                 <Span>User score</Span>: {movie.vote_average * 10}%
-              </p>
-              <p>
+              </Paragraph>
+              <Paragraph>
                 <Span>Overview:</Span> {movie.overview}
-              </p>
-              <p>
+              </Paragraph>
+              <Paragraph>
                 <Span>Genres:</Span>{" "}
                 {movie.genres.map((genre) => genre.name).join(" ")}
-              </p>
+              </Paragraph>
             </ContentContainer>
-            <InfoContainer>
-              <Paragraph>Additional information</Paragraph>
-              <StyledLink to={`${url}/Cast`}>Cast</StyledLink>
-              <StyledLink to={`${url}/Reviews`}>Reviews</StyledLink>
-            </InfoContainer>
           </MainContainer>
+          <InfoContainer>
+            <Paragraph>Additional information</Paragraph>
+            <StyledLink to={`${url}/Cast`}>Cast</StyledLink>
+            <StyledLink to={`${url}/Reviews`}>Reviews</StyledLink>
+          </InfoContainer>
         </>
       )}
-      <hr />
       <Switch>
         <Route path={`${url}/Cast`}>
           <Cast data={movieId} />

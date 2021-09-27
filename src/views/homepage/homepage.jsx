@@ -1,6 +1,5 @@
 import { FetchTrendingMovies } from "api/ApiService";
 import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
 import {
   Title,
   Item,

@@ -18,13 +18,13 @@ export default function MoviePage() {
   const [movies, setMovies] = useState([]);
   const [searchWord, setSearchWord] = useState("");
   const { url } = useRouteMatch();
+  const name = new URLSearchParams(location.search).get("query");
 
   useEffect(() => {
-    if (!searchWord) {
-      return;
-    }
+    if (name !== null) setSearchWord(name);
+    if (!searchWord) return;
     ApiService.SearchMovies(`${searchWord}`).then(setMovies);
-  }, [searchWord]);
+  }, [searchWord, name]);
 
   const SearchWord = (e) => {
     e.preventDefault();
