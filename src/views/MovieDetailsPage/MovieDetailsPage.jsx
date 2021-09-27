@@ -1,9 +1,20 @@
 // import * as ApiService from "../../api/ApiService";
 import { useState, useEffect } from "react";
 import { useParams, Route, useRouteMatch, Switch } from "react-router";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Cast from "views/Cast/Cast";
 import Reviews from "views/Reviews/Reviews";
+import {
+  MainContainer,
+  Button,
+  ImgContainer,
+  Poster,
+  ContentContainer,
+  Span,
+  Paragraph,
+  InfoContainer,
+  StyledLink,
+} from "./MovieDetailsPage.styled";
 
 export default function MovieDetailsPage() {
   const history = useHistory();
@@ -27,29 +38,35 @@ export default function MovieDetailsPage() {
     <>
       {movie && (
         <>
-          <div>
-            <button type="button" onClick={GoBackFn}>
-              Go back
-            </button>
-            <div>
-              <img
-                width="320"
+          <Button type="button" onClick={GoBackFn}>
+            Go back
+          </Button>
+          <MainContainer>
+            <ImgContainer>
+              <Poster
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.original_title}
               />
-            </div>
-            <div>
+            </ImgContainer>
+            <ContentContainer>
               <h2>{movie.original_title}</h2>
-              <p>User score: {movie.vote_average}</p>
-              <p>Overview: {movie.overview}</p>
-              <p>Genres: {movie.genres.map((genre) => genre.name).join(",")}</p>
-            </div>
-            <div>
-              <p>Additional information</p>
-              <Link to={`${url}/Cast`}>Cast</Link>
-              <Link to={`${url}/Reviews`}>Reviews</Link>
-            </div>
-          </div>
+              <p>
+                <Span>User score</Span>: {movie.vote_average * 10}%
+              </p>
+              <p>
+                <Span>Overview:</Span> {movie.overview}
+              </p>
+              <p>
+                <Span>Genres:</Span>{" "}
+                {movie.genres.map((genre) => genre.name).join(" ")}
+              </p>
+            </ContentContainer>
+            <InfoContainer>
+              <Paragraph>Additional information</Paragraph>
+              <StyledLink to={`${url}/Cast`}>Cast</StyledLink>
+              <StyledLink to={`${url}/Reviews`}>Reviews</StyledLink>
+            </InfoContainer>
+          </MainContainer>
         </>
       )}
       <hr />

@@ -1,7 +1,16 @@
 import * as ApiService from "../../api/ApiService";
 import { useEffect, useState } from "react";
-import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
-// import MovieDetailsPage from "views/MovieDetailsPage/MovieDetailsPage";
+import { useRouteMatch, useHistory, useLocation } from "react-router-dom";
+import {
+  Form,
+  Input,
+  List,
+  Button,
+  StyledLink,
+  MoviePicture,
+  Item,
+  SmallTitle,
+} from "../MoviePage/MoviePage.styled";
 
 export default function MoviePage() {
   const history = useHistory();
@@ -29,20 +38,26 @@ export default function MoviePage() {
 
   return (
     <>
-      <form onSubmit={SearchWord}>
-        <input name="searchForm" type="text" autoComplete="off" autoFocus />
-        <button type="submit">Search</button>
-      </form>
-      <ul>
+      <Form onSubmit={SearchWord}>
+        <Input name="searchForm" type="text" autoComplete="off" autoFocus />
+        <Button type="submit">Search</Button>
+      </Form>
+      <List>
         {movies &&
           movies.map((movie) => {
             return (
-              <li key={movie.id}>
-                <Link to={`${url}/${movie.id}`}>{movie.title}</Link>
-              </li>
+              <StyledLink to={`${url}/${movie.id}`} key={movie.id}>
+                <Item key={movie.id}>
+                  <MoviePicture
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                  <SmallTitle>{movie.title}</SmallTitle>
+                </Item>
+              </StyledLink>
             );
           })}
-      </ul>
+      </List>
     </>
   );
 }
