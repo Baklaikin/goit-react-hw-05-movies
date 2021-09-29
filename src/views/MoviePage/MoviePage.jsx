@@ -22,7 +22,7 @@ export default function MoviePage() {
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
-    if (name !== null) setSearchWord(name);
+    if (name) setSearchWord(name);
     if (!searchWord) return;
     ApiService.SearchMovies(`${searchWord}`).then(setMovies);
   }, [searchWord, name]);
