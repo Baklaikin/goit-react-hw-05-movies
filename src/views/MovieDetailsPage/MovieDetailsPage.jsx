@@ -21,7 +21,6 @@ export default function MovieDetailsPage() {
   const { url } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  console.log(location.state);
 
   useEffect(() => {
     fetch(
