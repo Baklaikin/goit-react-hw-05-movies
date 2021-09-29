@@ -5,7 +5,6 @@ export const List = styled.ul`
   width: 100%;
   flex-wrap: wrap;
   list-style: none;
-  /* margin: 0 auto; */
   margin-right: -50px;
   padding: 8px;
 `;
@@ -18,6 +17,9 @@ export const Item = styled.li`
   box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);
   border-radius: 4px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const Image = styled.img`
@@ -36,4 +38,10 @@ export const Paragraph = styled.p`
   font-size: 12px;
   font-weight: 500;
   margin-bottom: 0;
+`;
+
+export const ImgThumb = styled.div`
+  height: auto;
+  max-width: 270px;
+  margin: 0 auto;
 `;

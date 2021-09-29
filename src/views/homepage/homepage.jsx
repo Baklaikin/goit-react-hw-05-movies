@@ -28,7 +28,6 @@ export default function Homepage() {
                   <MoviePicture
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                     alt={item.title}
-                    // width="240"
                   />
                   <SmallTitle>{item.title}</SmallTitle>
                 </Item>

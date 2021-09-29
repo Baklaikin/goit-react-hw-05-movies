@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Route, useRouteMatch, Switch } from "react-router";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Cast from "views/Cast/Cast";
 import Reviews from "views/Reviews/Reviews";
 import {
@@ -17,9 +17,11 @@ import {
 
 export default function MovieDetailsPage() {
   const history = useHistory();
+  const location = useLocation();
   const { url } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  console.log(location.state);
 
   useEffect(() => {
     fetch(
@@ -30,7 +32,7 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   const GoBackFn = () => {
-    return history.push("/");
+    history.push(location.state?.from ? location.state?.from : "/");
   };
 
   return (
@@ -63,8 +65,28 @@ export default function MovieDetailsPage() {
           </MainContainer>
           <InfoContainer>
             <Paragraph>Additional information</Paragraph>
-            <StyledLink to={`${url}/Cast`}>Cast</StyledLink>
-            <StyledLink to={`${url}/Reviews`}>Reviews</StyledLink>
+            <StyledLink
+              to={{
+                pathname: `${url}/Cast`,
+                state: {
+                  from: location?.state?.from ?? "/",
+                },
+              }}
+            >
+              {" "}
+              Cast
+            </StyledLink>
+            <StyledLink
+              to={{
+                pathname: `${url}/Reviews`,
+                state: {
+                  from: location?.state?.from ?? "/",
+                },
+              }}
+            >
+              {" "}
+              Reviews
+            </StyledLink>
           </InfoContainer>
         </>
       )}
