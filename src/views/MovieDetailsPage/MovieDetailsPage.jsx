@@ -72,7 +72,6 @@ export default function MovieDetailsPage() {
                 },
               }}
             >
-              {" "}
               Cast
             </StyledLink>
             <StyledLink
@@ -83,7 +82,6 @@ export default function MovieDetailsPage() {
                 },
               }}
             >
-              {" "}
               Reviews
             </StyledLink>
           </InfoContainer>
