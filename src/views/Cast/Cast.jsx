@@ -11,8 +11,6 @@ import {
 
 export default function Cast({ data }) {
   const [castInfo, setCastInfo] = useState([]);
-  console.log(data);
-
   useEffect(() => {
     ApiService.MovieCasting(data).then(setCastInfo);
   }, [data]);
