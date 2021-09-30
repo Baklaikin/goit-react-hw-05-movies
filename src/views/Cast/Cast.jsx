@@ -1,7 +1,5 @@
-// import { useParams, useRouteMatch } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as ApiService from "../../api/ApiService";
-import { useEffect } from "react/cjs/react.development";
 import {
   List,
   Item,
@@ -13,6 +11,7 @@ import {
 
 export default function Cast({ data }) {
   const [castInfo, setCastInfo] = useState([]);
+  console.log(data);
 
   useEffect(() => {
     ApiService.MovieCasting(data).then(setCastInfo);

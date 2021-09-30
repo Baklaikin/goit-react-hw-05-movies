@@ -16,16 +16,16 @@ export default function MoviePage() {
   const history = useHistory();
   const location = useLocation();
   const { url } = useRouteMatch();
-  const name = new URLSearchParams(location.search).get("query");
+  const query = new URLSearchParams(location.search).get("query");
 
   const [movies, setMovies] = useState([]);
   const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
-    if (name) setSearchWord(name);
+    if (query) setSearchWord(query);
     if (!searchWord) return;
     ApiService.SearchMovies(`${searchWord}`).then(setMovies);
-  }, [searchWord, name]);
+  }, [searchWord, query]);
 
   const SearchWord = (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ export default function MoviePage() {
                 to={{
                   pathname: `${url}/${movie.id}`,
                   state: {
-                    from: `${url}?query=${name}`,
+                    from: `${url}?query=${query}`,
                   },
                 }}
                 key={movie.id}

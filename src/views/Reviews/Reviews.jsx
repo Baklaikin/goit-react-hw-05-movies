@@ -1,7 +1,5 @@
-// import { useParams, useRouteMatch } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as ApiService from "../../api/ApiService";
-import { useEffect } from "react/cjs/react.development";
 import { Title, Item, Paragraph } from "../Reviews/Reviews.styled";
 
 export default function Reviews({ data }) {
